@@ -1,6 +1,6 @@
 # Oracle Server Keep-Alive Script 说明
 
-fork 自 :contentReference[oaicite:0]{index=0}
+fork 自 [:contentReference[oaicite:0]{index=0}](https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/oalive.sh)
 
 实测 wget 网速没有效果，借助 AI coding 进行调试修改。
 

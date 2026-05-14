@@ -1,6 +1,6 @@
 #!/bin/bash
 # by spiritlhl
-# from https://github.com/spiritLHLS/Oracle-server-keep-alive-script
+# from https://github.com/LemodePasta/Oracle-server-keep-alive-script
 
 if [[ -d "/usr/share/locale/en_US.UTF-8" ]]; then
   export LANG=en_US.UTF-8

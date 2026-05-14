@@ -14,7 +14,7 @@
 
 所有资源(除了CPU)可选默认配置则动态占用，实时调整，避免服务器有别的任何资源已经超过限额了仍然再占用资源
 
-为避免GitHub的CDN抽风加载不了新内容，所有新更新已使用[Gitlab仓库](https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script)
+为避免GitHub的CDN抽风加载不了新内容，所有新更新已使用[Gitlab仓库](https://github.com/LemodePasta/Oracle-server-keep-alive-script)
 
 由于speedtest-go的release依赖于GitHub，所以请检查 [www.githubstatus.com](https://www.githubstatus.com/) ,有问题时无法安装带宽占用
 
@@ -35,7 +35,7 @@
 有询问是否需要带宽占用的参数自定义，这时候默认选项就是```n```，回车就使用默认配置，输入```y```再回车则需要按照提示自定义参数
 
 ```
-curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/oalive.sh -o oalive.sh && chmod +x oalive.sh && bash oalive.sh
+curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/oalive.sh -o oalive.sh && chmod +x oalive.sh && bash oalive.sh
 ```
 
 或
@@ -47,7 +47,7 @@ bash oalive.sh
 或
 
 ```
-bash <(wget -qO- --no-check-certificate https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/oalive.sh)
+bash <(wget -qO- --no-check-certificate https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/oalive.sh)
 ```
 
 ### 特点
@@ -65,7 +65,7 @@ bash <(wget -qO- --no-check-certificate https://gitlab.com/spiritysdx/Oracle-ser
 - 提供一键检查更新的功能，更新范围仅限于脚本更新。**请在更新后重新设置占用服务**
 - 对所有进程执行增加唯一性检测，避免重复运行，使用PID文件进行判断。
 
-如若不希望一键的，希望自定义设置时间的，请查看[README_CRON.md](https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/blob/main/%20README_CRON.md)自行设置定时任务
+如若不希望一键的，希望自定义设置时间的，请查看[README_CRON.md](https://github.com/LemodePasta/Oracle-server-keep-alive-script/-/blob/main/%20README_CRON.md)自行设置定时任务
 
 ### 友链
 

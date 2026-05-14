@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # by spiritlhl
-# from https://github.com/spiritLHLS/Oracle-server-keep-alive-script
+# from https://github.com/LemodePasta/Oracle-server-keep-alive-script
 
 ver="2023.09.24.08.37"
 cd /root >/dev/null 2>&1
@@ -39,7 +39,7 @@ fi
 
 checkver() {
   running_version=$(grep "ver=\"[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}" "$0" | awk -F '"' '{print $2}')
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/oalive.sh -o oalive1.sh && chmod +x oalive1.sh
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/oalive.sh -o oalive1.sh && chmod +x oalive1.sh
   downloaded_version=$(grep "ver=\"[0-9]\{4\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}\.[0-9]\{2\}" oalive1.sh | awk -F '"' '{print $2}')
   if [ "$running_version" != "$downloaded_version" ]; then
     _yellow "更新脚本从 $ver 到 $downloaded_version"
@@ -86,10 +86,10 @@ boinc() {
 }
 
 calculate() {
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/cpu-limit.sh -o cpu-limit.sh && chmod +x cpu-limit.sh
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/cpu-limit.sh -o cpu-limit.sh && chmod +x cpu-limit.sh
   mv cpu-limit.sh /usr/local/bin/cpu-limit.sh
   chmod +x /usr/local/bin/cpu-limit.sh
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/cpu-limit.service -o cpu-limit.service && chmod +x cpu-limit.service
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/cpu-limit.service -o cpu-limit.service && chmod +x cpu-limit.service
   mv cpu-limit.service /etc/systemd/system/cpu-limit.service
   line_number=7
   total_cores=0
@@ -118,10 +118,10 @@ calculate() {
 }
 
 memory() {
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/memory-limit.sh -o memory-limit.sh && chmod +x memory-limit.sh
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/memory-limit.sh -o memory-limit.sh && chmod +x memory-limit.sh
   mv memory-limit.sh /usr/local/bin/memory-limit.sh
   chmod +x /usr/local/bin/memory-limit.sh
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/memory-limit.service -o memory-limit.service && chmod +x memory-limit.service
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/memory-limit.service -o memory-limit.service && chmod +x memory-limit.service
   mv memory-limit.service /etc/systemd/system/memory-limit.service
   systemctl daemon-reload
   systemctl enable memory-limit.service
@@ -137,22 +137,22 @@ memory() {
 }
 
 bandwidth() {
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/bandwidth_occupier.sh -o bandwidth_occupier.sh && chmod +x bandwidth_occupier.sh
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/bandwidth_occupier.sh -o bandwidth_occupier.sh && chmod +x bandwidth_occupier.sh
   mv bandwidth_occupier.sh /usr/local/bin/bandwidth_occupier.sh
   chmod +x /usr/local/bin/bandwidth_occupier.sh
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/bandwidth_occupier.timer -o bandwidth_occupier.timer && chmod +x bandwidth_occupier.timer
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/bandwidth_occupier.timer -o bandwidth_occupier.timer && chmod +x bandwidth_occupier.timer
   mv bandwidth_occupier.timer /etc/systemd/system/bandwidth_occupier.timer
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/bandwidth_occupier.service -o bandwidth_occupier.service && chmod +x bandwidth_occupier.service
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/bandwidth_occupier.service -o bandwidth_occupier.service && chmod +x bandwidth_occupier.service
   mv bandwidth_occupier.service /etc/systemd/system/bandwidth_occupier.service
   reading "需要自定义带宽占用的设置吗? (y/[n]) " answer
   if [ "$answer" == "y" ]; then
     # sed -i '/^bandwidth\|^rate/s/^/#/' /usr/local/bin/bandwidth_occupier.sh
     sed -i '41,47s/^/# /' /usr/local/bin/bandwidth_occupier.sh
     reading "输入你需要的带宽大小(以mbps为单位，例如10mbps输入10): " rate_mbps
-    rate=$((rate_mbps * 1000000))
+    rate=$((rate_mbps * 125000))
     reading "输入你需要请求的时长(以分钟为单位，例如10分钟输入10): " timeout
     # sed -i 's/^timeout/#timeout/' /usr/local/bin/bandwidth_occupier.sh
-    sed -i '47a\timeout '$timeout'm wget $selected_url --limit-rate='$rate' -O /dev/null &' /usr/local/bin/bandwidth_occupier.sh
+    sed -i '47a\timeout '$timeout'm wget $selected_url --limit-rate='$rate' -O /dev/null' /usr/local/bin/bandwidth_occupier.sh
     reading "输入你需要间隔的时长(以分钟为单位，例如45分钟输入45): " interval
     sed -i "s/^OnUnitActiveSec.*/OnUnitActiveSec=$interval/" /etc/systemd/system/bandwidth_occupier.timer
   else
@@ -278,9 +278,9 @@ install_speedtest_go() {
 bandwidth_speedtest_go() {
   install_speedtest_go
   cd /root >/dev/null 2>&1
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/bandwidth_occupier.timer -o bandwidth_occupier.timer && chmod +x bandwidth_occupier.timer
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/bandwidth_occupier.timer -o bandwidth_occupier.timer && chmod +x bandwidth_occupier.timer
   mv bandwidth_occupier.timer /etc/systemd/system/bandwidth_occupier.timer
-  curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/bandwidth_occupier.service -o bandwidth_occupier.service && chmod +x bandwidth_occupier.service
+  curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/bandwidth_occupier.service -o bandwidth_occupier.service && chmod +x bandwidth_occupier.service
   mv bandwidth_occupier.service /etc/systemd/system/bandwidth_occupier.service
   file_content=$(cat /etc/systemd/system/bandwidth_occupier.service)
   new_file_content=$(echo "$file_content" | sed '7s/.*/ExecStart=\/bin\/bash -c '\''for i in {1..10}; do \/etc\/speedtest-cli\/speedtest-go; done'\''/')
@@ -395,7 +395,7 @@ check_services_status() {
 
 main() {
   _green "当前脚本更新时间(请注意比对仓库说明)： $ver"
-  _green "仓库：https://github.com/spiritLHLS/Oracle-server-keep-alive-script"
+  _green "仓库：https://github.com/LemodePasta/Oracle-server-keep-alive-script"
   check_services_status
   echo "选择你的选项:"
   echo "1. 安装保活服务"

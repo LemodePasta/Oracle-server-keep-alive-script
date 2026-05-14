@@ -10,7 +10,7 @@
 
 下载脚本
 ```
-curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/cpu-limit.sh -o cpu-limit.sh && chmod +x cpu-limit.sh
+curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/cpu-limit.sh -o cpu-limit.sh && chmod +x cpu-limit.sh
 mv cpu-limit.sh /usr/local/bin/cpu-limit.sh 
 ```
 
@@ -45,7 +45,7 @@ rm /tmp/memory/block && umount /tmp/memory && rmdir /tmp/memory
 
 下载脚本
 ```
-curl -L https://gitlab.com/spiritysdx/Oracle-server-keep-alive-script/-/raw/main/bandwidth_occupier.sh -o bandwidth_occupier.sh && chmod +x bandwidth_occupier.sh
+curl -L https://raw.githubusercontent.com/LemodePasta/Oracle-server-keep-alive-script/main/bandwidth_occupier.sh -o bandwidth_occupier.sh && chmod +x bandwidth_occupier.sh
 mv bandwidth_occupier.sh /usr/local/bin/bandwidth_occupier.sh
 ```
 

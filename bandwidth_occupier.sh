@@ -1,6 +1,6 @@
 #!/bin/bash
 # by spiritlhl
-# from https://github.com/spiritLHLS/Oracle-server-keep-alive-script
+# from https://github.com/LemodePasta/Oracle-server-keep-alive-script
 
 if [[ -d "/usr/share/locale/en_US.UTF-8" ]]; then
   export LANG=en_US.UTF-8
@@ -43,6 +43,6 @@ if ! command -v speedtest-cli >/dev/null 2>&1; then
 else
   bandwidth=$(speedtest-cli --simple | awk '/^Download/ {print $2}')
 fi
-rate=$(echo "$bandwidth * 1024 * 1024 * 0.30" | bc | awk '{printf "%.0f\n", $1}')
-timeout 6m wget $selected_url --limit-rate=$rate -O /dev/null &
+rate=$(echo "$bandwidth * 125000 * 0.30" | bc | awk '{printf "%.0f\n", $1}')
+timeout 6m wget $selected_url --limit-rate=$rate -O /dev/null
 rm "${pid_file}"

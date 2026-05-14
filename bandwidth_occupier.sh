@@ -44,5 +44,8 @@ else
   bandwidth=$(speedtest-cli --simple | awk '/^Download/ {print $2}')
 fi
 rate=$(echo "$bandwidth * 125000 * 0.30" | bc | awk '{printf "%.0f\n", $1}')
-timeout 6m wget $selected_url --limit-rate=$rate -O /dev/null
+fluct=$(( (RANDOM % 7) - 3 ))
+actual_timeout=$((6 + fluct))
+[ $actual_timeout -lt 1 ] && actual_timeout=1
+timeout ${actual_timeout}m wget $selected_url --limit-rate=$rate -O /dev/null
 rm "${pid_file}"
